@@ -35,7 +35,12 @@ const editApi = (index) => {
 
 const addApi = () => {
   if (newApiName.value.trim() !== '') {
-    apis.value.push({ name: newApiName.value })
+    apis.value.push({
+        id: apis.value.length + 1,
+        name: newApiName.value,
+        category: newApiCategory.value,
+        token: newApiToken.value
+    })
     newApiName.value = ''
     showMode.value = false
   }
@@ -43,7 +48,7 @@ const addApi = () => {
 
 
 const removeApi = (index) => {
-    
+    const api = apis.value[index]
 }
 
 </script>
