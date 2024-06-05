@@ -43,6 +43,9 @@ const addApi = () => {
         token: newApiToken.value
     })
     newApiName.value = ''
+    newApiCategory.value = ''
+    newApiToken.value = ''
+    selectedApiIndex.value = null
     showMode.value = false
   }
 }
