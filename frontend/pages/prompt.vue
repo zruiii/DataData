@@ -1,3 +1,18 @@
+<script setup>
+
+import { ref } from 'vue'
+
+const customHeight = ref('300px')
+const customWeight = ref('200px')
+
+const prompts = ref([
+  { id: 1, name: '多中心找点', task: 'Task 1', description: 'Description 1'},
+  { id: 2, name: '实时交通', task: 'Task 2', description: 'Description 2'}
+])
+
+
+</script>
+
 <template>
     <div class="flex h-full min-h-screen">
         <!-- 左侧目录栏 -->
@@ -10,9 +25,25 @@
         </div>
         
 
-         <!-- 右侧内容区域 -->
-         <div class="w-5/6 bg-white p-4">
-            
+        <!-- 右侧内容区域 -->
+        <div class="p-10 w-5/6 bg-white">
+            <div class="grid grid-cols-3 gap-20">
+                <div
+                    class="p-4 flex items-center justify-center rounded-xl bg-gray-200 cursor-pointer"
+                    :style="{ height: customHeight }"
+                    v-for="prompt in prompts"
+                    :key="prompt.id"
+                >
+                    <p class="text-2xl"> {{ prompt.name }} </p>
+                </div>
+
+                <div class="flex items-center justify-center">
+                    <button @click="" class="p-4 flex items-center justify-center rounded-full bg-gray-200 cursor-pointer" :style="{ height: customWeight, width: customWeight }">
+                        <span class="text-4xl"> + </span>
+                    </button>
+                </div>
+            </div>
         </div>
+
     </div>
 </template>

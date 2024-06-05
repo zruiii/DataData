@@ -97,7 +97,7 @@ const removeApi = () => {
         </div>
   
         <!-- 右侧内容区域 -->
-        <div class="w-5/6 bg-white p-4">
+        <div class="p-10 w-5/6 bg-white">
             <div class="grid grid-cols-3 gap-20">
                 <div
                     v-for="(api, index) in apis"
