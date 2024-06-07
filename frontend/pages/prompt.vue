@@ -23,7 +23,7 @@ const initPrompt = () => {
     newPromptName.value = ''
     newPromptTask.value = ''
     newPromptDesc.value = ''
-    selectedApiIndex.value = null
+    selectedPromptIndex.value = null
 }
 
 
@@ -40,8 +40,8 @@ const addPrompt = () => {
     newPromptTask.value = ''
     newPromptDesc.value = ''
     selectedPromptIndex.value = null
-    showMode = false
-    editMode = false
+    showMode.value = false
+    editMode.value = false
 }
 
 
@@ -50,12 +50,36 @@ const editPrompt = (index) => {
     newPromptName.value = prompt.name
     newPromptTask.value = prompt.task
     newPromptDesc.value = prompt.description
-    editMode = true
-    showMode = true
+    editMode.value = true
+    showMode.value = true
     selectedPromptIndex.value = index
 }
 
+const savePrompt = () => {
+    if (selectedPromptIndex.value !== null) {
+        const prompt = prompts.value[selectedPromptIndex.value]
+        prompt.name = newPromptName.value
+        prompt.task = newPromptTask.value
+        prompt.description = newPromptDesc.value
+        showMode.value = false
+        editMode.value = false
+        selectedPromptIndex.value = null
+    }
+}
 
+
+const removePrompt = () => {
+    console.log(selectedPromptIndex)
+    if (selectedPromptIndex.value !== null) {
+        prompts.value.splice(selectedPromptIndex.value, 1)
+        newPromptName.value = ''
+        newPromptTask.value = ''
+        newPromptDesc.value = ''
+        showMode.value = false
+        editMode.value = false
+        selectedPromptIndex.value = null
+    }
+}
 
 </script>
 
@@ -85,7 +109,7 @@ const editPrompt = (index) => {
                 </div>
 
                 <div class="flex items-center justify-center">
-                    <button @click="" class="p-4 flex items-center justify-center rounded-full bg-gray-200 cursor-pointer" :style="{ height: customWeight, width: customWeight }">
+                    <button @click="initPrompt" class="p-4 flex items-center justify-center rounded-full bg-gray-200 cursor-pointer" :style="{ height: customWeight, width: customWeight }">
                         <span class="text-4xl"> + </span>
                     </button>
                 </div>
