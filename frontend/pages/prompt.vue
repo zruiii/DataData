@@ -114,7 +114,7 @@ const selectPrompt = (index) => {
                 >
                     <input 
                         type="radio"
-                        class="absolute top-4 left-4"
+                        class="absolute top-6 left-6"
                         :checked="selectedPromptIndex === index"
                         @change="selectPrompt(index)"
                         @click.stop
