@@ -10,11 +10,14 @@ const prompts = ref([
   { id: 2, name: '实时交通', task: 'Task 2', description: 'Description 2'}
 ])
 
-const showMode = ref(true)
+const showMode = ref(false)
 const editMode = ref(false)
 const newPromptName = ref('')
 const newPromptTask = ref('')
 const newPromptDesc = ref('')
+const currentIndex = ref(null)
+
+const selectedPrompt = ref(null)
 const selectedPromptIndex = ref(null)
 
 const initPrompt = () => {
@@ -23,7 +26,7 @@ const initPrompt = () => {
     newPromptName.value = ''
     newPromptTask.value = ''
     newPromptDesc.value = ''
-    selectedPromptIndex.value = null
+    currentIndex.value = null
 }
 
 
@@ -39,7 +42,7 @@ const addPrompt = () => {
     newPromptName.value = ''
     newPromptTask.value = ''
     newPromptDesc.value = ''
-    selectedPromptIndex.value = null
+    currentIndex.value = null
     showMode.value = false
     editMode.value = false
 }
@@ -52,33 +55,37 @@ const editPrompt = (index) => {
     newPromptDesc.value = prompt.description
     editMode.value = true
     showMode.value = true
-    selectedPromptIndex.value = index
+    currentIndex.value = index
 }
 
 const savePrompt = () => {
-    if (selectedPromptIndex.value !== null) {
-        const prompt = prompts.value[selectedPromptIndex.value]
+    if (currentIndex.value !== null) {
+        const prompt = prompts.value[currentIndex.value]
         prompt.name = newPromptName.value
         prompt.task = newPromptTask.value
         prompt.description = newPromptDesc.value
         showMode.value = false
         editMode.value = false
-        selectedPromptIndex.value = null
+        currentIndex.value = null
     }
 }
 
 
 const removePrompt = () => {
-    console.log(selectedPromptIndex)
-    if (selectedPromptIndex.value !== null) {
-        prompts.value.splice(selectedPromptIndex.value, 1)
+    if (currentIndex.value !== null) {
+        prompts.value.splice(currentIndex.value, 1)
         newPromptName.value = ''
         newPromptTask.value = ''
         newPromptDesc.value = ''
         showMode.value = false
         editMode.value = false
-        selectedPromptIndex.value = null
+        currentIndex.value = null
     }
+}
+
+const selectPrompt = (index) => {
+    selectedPromptIndex.value = index
+    selectedPrompt.value = prompts.value[index]
 }
 
 </script>
@@ -99,12 +106,20 @@ const removePrompt = () => {
         <div class="p-10 w-5/6 bg-white">
             <div class="grid grid-cols-3 gap-20">
                 <div
-                    class="p-4 flex items-center justify-center rounded-xl bg-gray-200 cursor-pointer"
+                    class="p-4 flex items-center justify-center rounded-xl bg-gray-200 cursor-pointer relative"
                     :style="{ height: customHeight }"
                     v-for="(prompt, index) in prompts"
                     :key="prompt.id"
                     @click="editPrompt(index)"
                 >
+                    <input 
+                        type="radio"
+                        class="absolute top-4 left-4"
+                        :checked="selectedPromptIndex === index"
+                        @change="selectPrompt(index)"
+                        @click.stop
+                        style="transform: scale(1.5);"
+                    />
                     <p class="text-2xl"> {{ prompt.name }} </p>
                 </div>
 
