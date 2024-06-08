@@ -22,7 +22,7 @@ const divLevel = ref(0)
         <!-- 右侧内容区域 -->
         <div class="p-10 w-5/6 bg-white space-y-6">
             <div>
-                <label>Number of few-shot</label>
+                <label>Number of few-shots</label>
                 <select v-model="numOfFewShots" class="mt-2 mb-4 border w-full rounded-xl p-2">
                     <option>1</option>
                     <option>2</option>
@@ -31,19 +31,17 @@ const divLevel = ref(0)
                     <option>5</option>
                     <option>6</option>
                 </select>
-                <small class="text-gray-600">数据合成 prompt 中传入的 few-shot 样本数。该参数越大，合成样本质量越高。</small>
             </div>
 
             <div>
-                <label>Number of new-sample</label>
+                <label>Number of new-samples</label>
                 <select v-model="numOfGenSamples" class="mt-2 mb-4 border w-full rounded-xl p-2">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
                 </select>
-                <small class="text-gray-600">单个 API 执行一次合成时产生的新样本数。</small>
-                <small class="block text-gray-600 font-bold">NOTE: few-shot 和 new-sample 之和不宜设置过大（8以内），否则 context 过长容易导致 API 调用失败。</small>
+                <small class="text-gray-600">合成间隔指定算法每次打印结果滚动轮次。建议设置为1来避免脏数据混入种子样本库。</small>
             </div>
 
             <div>

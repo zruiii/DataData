@@ -5,7 +5,7 @@
 
             <div class="flex items-center space-x-4">
                 <NuxtLink to="/" class="text-xl">Data</NuxtLink>
-                <NuxtLink to="/api" class="text-xl">Setting</NuxtLink>
+                <NuxtLink to="/setting" class="text-xl">Setting</NuxtLink>
             </div>
         </nav>
 

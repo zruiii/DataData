@@ -43,7 +43,7 @@ const divLevel = ref(0)
                     <option>4</option>
                 </select>
                 <small class="text-gray-600">单个 API 执行一次合成时产生的新样本数。</small>
-                <small class="block text-gray-600 font-bold">NOTE: few-shot 和 new-sample 之和不宜设置过大（8以内），否则 context 过长容易导致 API 调用失败。</small>
+                <small class="text-gray-600">NOTE: few-shot 和 new-sample 之和不宜设置过大（8以内），否则 context 过长容易导致 API 调用失败。</small>
             </div>
 
             <div>

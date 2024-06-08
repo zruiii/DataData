@@ -18,7 +18,7 @@ const newPromptDesc = ref('')
 const currentIndex = ref(null)
 
 const selectedPrompt = ref(null)
-const selectedPromptIndex = ref(0)
+const selectedPromptIndex = ref(1)
 
 const initPrompt = () => {
     showMode.value = true
